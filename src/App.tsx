@@ -37,7 +37,7 @@ const resumeData = {
           role: '大客户 CSM',
           roleEn: 'Key Account CSM',
           description: '负责大客户客户成功管理，涵盖服务交付、续费管理及客户关系维护，服务阳光电源、丽豪清能、立方制药、济川药业、天准科技、卓郎智能等多家企业。',
-          descriptionEn: 'Responsible for key account customer success management, covering service delivery, renewal management, and customer relationship maintenance. Serving Sungrow, Lihao, lifeon, Jumpcan, Tianzhun Tech, Zhuolang Intelligence, and other enterprises.',
+          descriptionEn: 'Responsible for key account customer success management, covering service delivery, renewal management, and customer relationship maintenance. Serving Sungrow, Lihao, lifeon, Jumpcan, Tztek, Saurer, and other enterprises.',
           achievement: '',
           achievementEn: '',
         },
