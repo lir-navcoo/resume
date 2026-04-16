@@ -7,24 +7,27 @@ const CORRECT_PASSWORD='lirui'
 
 type Theme = 'light' | 'dark'
 
-const resumeData: {
-  name: string
-  title: string
-  email: string
-  github: string
-  phone: string
-  location: string
-  about: string
-  skills: { category: string; items: string[] }[]
-  experience: { company: string; period: string; role: string; description: string }[]
-  projects: { name: string; tech: string; description: string; link: string }[]
-} = {
+const resumeData = {
   name: '李睿',
   title: '技术经理 · 8年经验',
-  email: '',
+  email: '78080114@qq.com',
   github: 'lir-navcoo',
   phone: '',
   location: '合肥',
+
+  education: [
+    { school: '江西师范大学', degree: '本科', major: '计算机科学与技术', period: '2019.09 – 2022.06' },
+    { school: '徽商职业学院', degree: '大专', major: '软件技术', period: '2015.09 – 2018.06' },
+  ],
+
+  experience: [
+    { company: '安徽霍迹寻踪科技有限公司', period: '2022.10 – 至今', role: '解决方案中心经理', description: '从 0 到 1 建立霍迹寻踪解决方案体系，主导技术架构设计，带领团队完成多个大型项目交付，负责客户成功全链路管理。', tags: [] },
+    { company: '安徽霍迹寻踪科技有限公司', period: '2021.06 – 2022.10', role: '客户成功部经理', description: '负责客户成功部日常管理，制定交付、售后、续费规则，搭建交付与运维一体化闭环链路。完成钉钉宜搭交付体系从 0 到 1 建设，建立霍迹寻踪与钉钉宜搭核心代理体系。', tags: [] },
+    { company: '天津汉博信息技术有限公司', period: '2020.09 – 2021.05', role: '客户成功经理', description: '执行公司整体客户策略，负责存量客户续费指标、服务支持与管理培训，推进 VIP 客户续约工作。', tags: ['美团'] },
+    { company: '天津汉博信息技术有限公司', period: '2018.09 – 2020.09', role: 'IT技术支持', description: '负责合肥及周边城市收银系统安装培训与售后维护，为商家打造线上线下一体化餐饮方案，留存活跃商家。参与美团点评繁星计划（M0 培训）获第三名及优秀学员称号。', tags: ['美团'] },
+    { company: '马鞍山天禧科技有限公司', period: '2017.09 – 2018.04', role: '运维工程师', description: '甲方为阳光雨露信息技术服务有限公司，日常负责海尔工业园合肥园区的计算机维护、服务器管理、机房管理、网络管理、资产管理等技术支持。', tags: [] },
+    { company: '安徽七禾田餐饮管理有限公司', period: '2016.07 – 2017.08', role: 'IT技术支持', description: '负责集团总部计算机维护、网络维护、服务器管理及资产信息化管理。主导搬迁新办公环境的网络及设备验收工作，建立资产信息化管理系统与多媒体信息化办公体系。', tags: [] },
+  ],
 
   about: `擅长 React 与 Spring Boot 技术栈，作为技术经理带领过 10 人以上研发交付团队，擅长从需求出发设计高可用技术方案，具备较强的逻辑思维与学习能力。`,
 
@@ -35,72 +38,36 @@ const resumeData: {
     { category: '认证资质', items: ['美团高级认证工程师', '钉钉培训中心认证讲师', '宜搭高级认证讲师', '高级低代码开发师'] },
   ],
 
-  experience: [
-    {
-      company: '安徽霍迹寻踪科技有限公司',
-      period: '2022.10 – 至今',
-      role: '解决方案中心经理',
-      description: '从 0 到 1 建立霍迹寻踪解决方案体系，主导技术架构设计，带领团队完成多个大型项目交付，负责客户成功全链路管理。',
-    },
-    {
-      company: '安徽霍迹寻踪科技有限公司',
-      period: '2021.06 – 2022.10',
-      role: '客户成功部经理',
-      description: '负责客户成功部日常管理，制定交付、售后、续费规则，搭建交付与运维一体化闭环链路。完成钉钉宜搭交付体系从 0 到 1 建设，建立霍迹寻踪与钉钉宜搭核心代理体系。',
-    },
-    {
-      company: '天津汉博信息技术有限公司',
-      period: '2020.09 – 2021.05',
-      role: '客户成功经理',
-      description: '执行公司整体客户策略，负责存量客户续费指标、服务支持与管理培训，推进 VIP 客户续约工作。',
-    },
-    {
-      company: '天津汉博信息技术有限公司',
-      period: '2018.09 – 2020.09',
-      role: 'IT技术支持',
-      description: '负责合肥及周边城市收银系统安装培训与售后维护，为商家打造线上线下一体化餐饮方案，留存活跃商家。参与美团点评繁星计划（M0 培训）获第三名及优秀学员称号。',
-    },
-    {
-      company: '安徽七禾田餐饮管理有限公司',
-      period: '2017.09 – 2018.09',
-      role: 'IT技术支持',
-      description: '负责集团总部计算机维护、网络维护、服务器管理及资产信息化管理。主导搬迁新办公环境的网络及设备验收工作，建立资产信息化管理系统与多媒体信息化办公体系。',
-    },
+  projects: [
+    { name: '钉钉宜搭交付体系', tech: '钉钉宜搭 + 低代码平台', description: '从 0 到 1 搭建钉钉宜搭交付体系，完成霍迹寻踪与钉钉宜搭核心代理建立，实现企业级应用快速交付。', link: '' },
+    { name: '客户成功管理体系', tech: 'Spring Boot + MySQL + Redis', description: '搭建交付、运维、续费一体化闭环链路，打通客户全生命周期管理，任职期间续费率显著提升。', link: '' },
+    { name: '线上线下一体化餐饮方案', tech: '收银系统 + 美团 API 集成', description: '为餐饮商家定制线上线下一体化方案，整合收银、点餐、外卖全流程，提升商家运营效率。', link: '' },
   ],
 
-  projects: [
-    {
-      name: 'navcoo-blog',
-      tech: 'React + Spring Boot + TypeScript',
-      description: '现代化全栈个人博客系统，支持分类筛选、暗色模式、响应式布局，无需登录即可浏览所有已发布文章。',
-      link: 'https://github.com/lir-navcoo/navcoo-bolg',
-    },
-    {
-      name: 'tool-box',
-      tech: 'React + TypeScript + Tailwind CSS',
-      description: '简洁高效的在线工具箱，支持 JSON 格式化、加密解密、二维码生成、图片格式转换、颜色工具、个税计算器等实用功能。',
-      link: 'https://github.com/lir-navcoo/tool-box',
-    },
-    {
-      name: 'coin-flip',
-      tech: 'React + TypeScript + Vite',
-      description: '为选择困难症患者打造的在线掷硬币工具，快速做出艰难决定，支持自定义选项。',
-      link: 'https://github.com/lir-navcoo/coin-flip',
-    },
-    {
-      name: 'resume',
-      tech: 'React + TypeScript + Tailwind CSS',
-      description: '个人简历介绍页面，支持亮色/暗黑模式切换、密码保护解锁查看。',
-      link: 'https://github.com/lir-navcoo/resume',
-    },
-    {
-      name: 'yida-add-tampermonkey',
-      tech: 'Tampermonkey + 宜搭 API',
-      description: '宜搭效率升级工具油猴脚本，增强宜搭应用功能，提升表单填写和数据处理效率。',
-      link: 'https://github.com/lir-navcoo/yida-add-tampermonkey',
-    },
+  githubProjects: [
+    { name: 'navcoo-blog', tech: 'React + Spring Boot + TypeScript', description: '现代化全栈个人博客系统，支持分类筛选、暗色模式、响应式布局，无需登录即可浏览所有已发布文章。', link: 'https://github.com/lir-navcoo/navcoo-bolg' },
+    { name: 'tool-box', tech: 'React + TypeScript + Tailwind CSS', description: '简洁高效的在线工具箱，支持 JSON 格式化、加密解密、二维码生成、图片格式转换、颜色工具、个税计算器等实用功能。', link: 'https://github.com/lir-navcoo/tool-box' },
+    { name: 'coin-flip', tech: 'React + TypeScript + Vite', description: '为选择困难症患者打造的在线掷硬币工具，快速做出艰难决定，支持自定义选项。', link: 'https://github.com/lir-navcoo/coin-flip' },
+    { name: 'resume', tech: 'React + TypeScript + Tailwind CSS', description: '个人简历介绍页面，支持亮色/暗黑模式切换、密码保护解锁查看。', link: 'https://github.com/lir-navcoo/resume' },
+    { name: 'yida-add-tampermonkey', tech: 'Tampermonkey + 宜搭 API', description: '宜搭效率升级工具油猴脚本，增强宜搭应用功能，提升表单填写和数据处理效率。', link: 'https://github.com/lir-navcoo/yida-add-tampermonkey' },
   ],
-}
+} as const
+
+const labels = {
+  name: '姓名', title: '职位', email: '邮箱', github: 'GitHub', phone: '电话', location: '坐标',
+  about: '关于我', skills: '技能清单', experience: '工作经历', projects: '项目经历',
+  githubProjects: 'GitHub 开源项目', education: '教育背景',
+  downloadPdf: '下载 PDF', language: 'EN', switchLang: 'EN',
+} as const
+
+const labelsEn = {
+  name: 'Name', title: 'Title', email: 'Email', github: 'GitHub', phone: 'Phone', location: 'Location',
+  about: 'About Me', skills: 'Skills', experience: 'Experience', projects: 'Projects',
+  githubProjects: 'Open Source Projects', education: 'Education',
+  downloadPdf: 'Download PDF', language: '中', switchLang: '中文',
+} as const
+
+const i18n = (lang: 'zh' | 'en') => lang === 'en' ? labelsEn : labels
 
 // ── Theme toggle button ────────────────────────────────────────────
 function ThemeToggle({ theme, onToggle }: { theme: Theme; onToggle: () => void }) {
@@ -108,7 +75,7 @@ function ThemeToggle({ theme, onToggle }: { theme: Theme; onToggle: () => void }
     <button
       onClick={onToggle}
       title={theme === 'dark' ? '切换亮色模式' : '切换暗黑模式'}
-      className="absolute top-4 right-4 w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+      className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
       style={
         theme === 'dark'
           ? { background: 'rgba(255,255,255,0.1)', color: '#f1f5f9' }
@@ -116,7 +83,6 @@ function ThemeToggle({ theme, onToggle }: { theme: Theme; onToggle: () => void }
       }
     >
       {theme === 'dark' ? (
-        // Sun icon
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="5"/>
           <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
@@ -125,7 +91,6 @@ function ThemeToggle({ theme, onToggle }: { theme: Theme; onToggle: () => void }
           <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
       ) : (
-        // Moon icon
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
@@ -184,15 +149,12 @@ function PasswordScreen({ onUnlock, theme, onTheme }: { onUnlock: () => void; th
   const inputClass = isDark
     ? 'bg-white/[0.10] border-white/10 text-slate-100 placeholder:text-slate-300'
     : 'bg-slate-100 border-slate-200 text-slate-900 placeholder:text-slate-400'
-  const labelClass = isDark ? 'text-slate-400' : 'text-slate-500'
-  const hintClass = isDark ? 'text-slate-700' : 'text-slate-400'
 
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden"
       style={{ background: bg }}
     >
-      {/* Background blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-10 blur-3xl"
@@ -212,7 +174,6 @@ function PasswordScreen({ onUnlock, theme, onTheme }: { onUnlock: () => void; th
         />
       </div>
 
-      {/* Theme toggle */}
       <ThemeToggle theme={theme} onToggle={onTheme} />
 
       <div className="w-full max-w-xs relative z-10">
@@ -222,7 +183,6 @@ function PasswordScreen({ onUnlock, theme, onTheme }: { onUnlock: () => void; th
         >
           <CardContent className="pt-7 pb-7 px-7">
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Label + Input as a tight group */}
               <div className="space-y-3">
                 <label
                   htmlFor="password-input"
@@ -304,7 +264,15 @@ function PasswordScreen({ onUnlock, theme, onTheme }: { onUnlock: () => void; th
 }
 
 // ── Resume content ──────────────────────────────────────────────────
-function ResumeContent({ theme, onTheme }: { theme: Theme; onTheme: () => void }) {
+type Lang = 'zh' | 'en'
+type Labels = typeof labels
+
+function ResumeContent({
+  theme, onTheme, lang, t, onLang,
+}: {
+  theme: Theme; onTheme: () => void
+  lang: Lang; t: Labels; onLang: () => void
+}) {
   const isDark = theme === 'dark'
   const bg = isDark
     ? 'radial-gradient(ellipse at 50% 0%, #0f1c2e 0%, #080e1a 100%)'
@@ -316,11 +284,35 @@ function ResumeContent({ theme, onTheme }: { theme: Theme; onTheme: () => void }
   const textMuted = isDark ? '#64748b' : '#94a3b8'
   const badgeBg = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)'
   const sectionAccent = isDark ? 'linear-gradient(to bottom, #3b82f6, #8b5cf6)' : 'linear-gradient(to bottom, #3b82f6, #6366f1)'
+  const tagMeituan = isDark ? 'bg-orange-500/20 text-orange-300' : 'bg-orange-50 text-orange-600'
+  const meituanLabel = lang === 'zh' ? '美团' : 'Meituan'
+
+  const handlePrint = () => window.print()
 
   return (
     <div className="min-h-screen py-10 px-4 relative" style={{ background: bg }}>
-      {/* Theme toggle */}
-      <ThemeToggle theme={theme} onToggle={onTheme} />
+      {/* Top toolbar */}
+      <div className="flex items-center justify-end gap-2 mb-6 pr-4 print:hidden">
+        <button
+          onClick={onLang}
+          className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 text-xs font-bold"
+          style={isDark ? { background: 'rgba(255,255,255,0.1)', color: '#e2e8f0' } : { background: 'rgba(0,0,0,0.06)', color: '#475569' }}
+          title={t.switchLang}
+        >
+          {t.language}
+        </button>
+        <button
+          onClick={handlePrint}
+          className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+          style={isDark ? { background: 'rgba(255,255,255,0.1)', color: '#e2e8f0' } : { background: 'rgba(0,0,0,0.06)', color: '#475569' }}
+          title={t.downloadPdf}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </button>
+        <ThemeToggle theme={theme} onToggle={onTheme} />
+      </div>
 
       <div className="max-w-3xl mx-auto space-y-10">
 
@@ -340,19 +332,42 @@ function ResumeContent({ theme, onTheme }: { theme: Theme; onTheme: () => void }
             <div className="flex flex-wrap gap-3 mt-3 text-sm" style={{ color: textMuted }}>
               {resumeData.email && <span>{resumeData.email}</span>}
               {resumeData.email && resumeData.github && <span>·</span>}
-              {resumeData.github && <span>{resumeData.github}</span>}
+              {resumeData.github && <a href={`https://github.com/${resumeData.github}`} target="_blank" rel="noopener noreferrer" style={{ color: '#60a5fa' }}>{resumeData.github}</a>}
               {(resumeData.email || resumeData.github) && resumeData.location && <span>·</span>}
               {resumeData.location && <span>{resumeData.location}</span>}
             </div>
           </div>
         </div>
 
+        {/* Education */}
+        {resumeData.education.length > 0 && (
+          <section>
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
+              {t.education}
+            </h2>
+            <div className="space-y-3">
+              {resumeData.education.map((edu, i) => (
+                <div key={i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-medium" style={{ color: textPrimary }}>{edu.school}</p>
+                      <p className="text-sm mt-0.5" style={{ color: textSecondary }}>{edu.degree} · {edu.major}</p>
+                    </div>
+                    <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{edu.period}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* About */}
         {resumeData.about && (
           <section>
             <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
               <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
-              关于我
+              {t.about}
             </h2>
             <p className="leading-relaxed" style={{ color: textSecondary }}>{resumeData.about}</p>
           </section>
@@ -363,25 +378,15 @@ function ResumeContent({ theme, onTheme }: { theme: Theme; onTheme: () => void }
           <section>
             <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
               <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
-              技能清单
+              {t.skills}
             </h2>
             <div className="grid grid-cols-2 gap-3">
               {resumeData.skills.map((skill) => (
-                <div
-                  key={skill.category}
-                  className="rounded-xl p-4 border"
-                  style={{ background: cardBg, borderColor: cardBorder }}
-                >
+                <div key={skill.category} className="rounded-xl p-4 border" style={{ background: cardBg, borderColor: cardBorder }}>
                   <p className="text-xs font-medium mb-2" style={{ color: textMuted }}>{skill.category}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {skill.items.map((item) => (
-                      <span
-                        key={item}
-                        className="text-xs px-2 py-0.5 rounded-md"
-                        style={{ background: badgeBg, color: textSecondary }}
-                      >
-                        {item}
-                      </span>
+                      <span key={item} className="text-xs px-2 py-0.5 rounded-md" style={{ background: badgeBg, color: textSecondary }}>{item}</span>
                     ))}
                   </div>
                 </div>
@@ -395,55 +400,66 @@ function ResumeContent({ theme, onTheme }: { theme: Theme; onTheme: () => void }
           <section>
             <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
               <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
-              工作经历
+              {t.experience}
             </h2>
             <div className="space-y-3">
               {resumeData.experience.map((exp, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl p-5 border"
-                  style={{ background: cardBg, borderColor: cardBorder }}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
+                <div key={i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
+                  <div className="flex items-start justify-between gap-3 flex-wrap">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <p className="font-medium" style={{ color: textPrimary }}>{exp.company}</p>
-                      <p className="text-sm mt-0.5" style={{ color: textSecondary }}>{exp.role}</p>
+                      {exp.tags?.map(tag => (
+                        <span key={tag} className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${tagMeituan}`}>{tag === '美团' ? meituanLabel : tag}</span>
+                      ))}
                     </div>
                     <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{exp.period}</span>
                   </div>
-                  <p className="text-sm mt-3 leading-relaxed" style={{ color: textSecondary }}>{exp.description}</p>
+                  <p className="text-sm mt-1" style={{ color: textSecondary }}>{exp.role}</p>
+                  <p className="text-sm mt-2 leading-relaxed" style={{ color: textSecondary }}>{exp.description}</p>
                 </div>
               ))}
             </div>
           </section>
         )}
 
-        {/* Projects */}
+        {/* Original Projects */}
         {resumeData.projects.length > 0 && (
           <section>
             <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
               <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
-              项目经历
+              {t.projects}
             </h2>
             <div className="space-y-3">
-              {resumeData.projects.map((project) => (
-                <div
-                  key={project.name}
-                  className="rounded-xl p-5 border"
-                  style={{ background: cardBg, borderColor: cardBorder }}
-                >
+              {resumeData.projects.map((project, i) => (
+                <div key={i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
                   <div className="flex items-start justify-between mb-1">
                     <p className="font-medium" style={{ color: textPrimary }}>{project.name}</p>
                     {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs"
-                        style={{ color: '#60a5fa' }}
-                      >
-                        查看源码 ↗
-                      </a>
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-xs" style={{ color: '#60a5fa' }}>查看源码 ↗</a>
+                    )}
+                  </div>
+                  {project.tech && <p className="text-xs mb-2" style={{ color: textMuted }}>{project.tech}</p>}
+                  <p className="text-sm leading-relaxed" style={{ color: textSecondary }}>{project.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* GitHub Projects */}
+        {resumeData.githubProjects.length > 0 && (
+          <section>
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
+              {t.githubProjects}
+            </h2>
+            <div className="space-y-3">
+              {resumeData.githubProjects.map((project) => (
+                <div key={project.name} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
+                  <div className="flex items-start justify-between mb-1">
+                    <p className="font-medium" style={{ color: textPrimary }}>{project.name}</p>
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-xs" style={{ color: '#60a5fa' }}>查看源码 ↗</a>
                     )}
                   </div>
                   {project.tech && <p className="text-xs mb-2" style={{ color: textMuted }}>{project.tech}</p>}
@@ -466,10 +482,13 @@ function ResumeContent({ theme, onTheme }: { theme: Theme; onTheme: () => void }
 export default function App() {
   const [unlocked, setUnlocked] = useState(false)
   const [theme, setTheme] = useState<Theme>('light')
+  const [lang, setLang] = useState<'zh' | 'en'>('zh')
 
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+  const toggleLang = () => setLang((l) => (l === 'zh' ? 'en' : 'zh'))
+  const t = i18n(lang)
 
   return unlocked
-    ? <ResumeContent theme={theme} onTheme={toggleTheme} />
+    ? <ResumeContent theme={theme} onTheme={toggleTheme} lang={lang} t={t} onLang={toggleLang} />
     : <PasswordScreen onUnlock={() => setUnlocked(true)} theme={theme} onTheme={toggleTheme} />
 }
