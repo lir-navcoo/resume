@@ -3,7 +3,7 @@ import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Card, CardContent } from './components/ui/card'
 
-const CORRECT_PASSWORD='***'
+const CORRECT_PASSWORD='lirui'
 
 type Theme = 'light' | 'dark'
 
@@ -182,7 +182,7 @@ function PasswordScreen({ onUnlock, theme, onTheme }: { onUnlock: () => void; th
   const textSecondary = isDark ? '#94a3b8' : '#475569'
   const textMuted = isDark ? '#64748b' : '#94a3b8'
   const inputClass = isDark
-    ? 'bg-white/[0.06] border-white/10 text-white placeholder:text-slate-600'
+    ? 'bg-white/[0.10] border-white/10 text-slate-100 placeholder:text-slate-300'
     : 'bg-slate-100 border-slate-200 text-slate-900 placeholder:text-slate-400'
   const labelClass = isDark ? 'text-slate-400' : 'text-slate-500'
   const hintClass = isDark ? 'text-slate-700' : 'text-slate-400'
@@ -239,6 +239,7 @@ function PasswordScreen({ onUnlock, theme, onTheme }: { onUnlock: () => void; th
                     placeholder="输入密钥解锁"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    style={{ color: isDark ? '#e2e8f0' : '#0f172a' }}
                     className={`
                       pr-14 rounded-xl h-12 text-sm
                       border focus-visible:ring-2
