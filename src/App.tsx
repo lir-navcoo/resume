@@ -354,7 +354,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
   return (
     <div className="min-h-screen py-10 px-4 relative" style={{ background: bg }}>
       {/* Top toolbar */}
-      <div className="flex items-center justify-end gap-2 mb-6 pr-4 print:hidden">
+      <div className="flex items-center justify-end gap-2 mb-6 pr-2 sm:pr-4 print:hidden">
         <button onClick={onLang} className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 text-xs font-bold" style={isDark ? { background: 'rgba(255,255,255,0.1)', color: '#e2e8f0' } : { background: 'rgba(0,0,0,0.06)', color: '#475569' }} title={L('切换语言', 'Switch Language')}>
           {t.language}
         </button>
@@ -364,7 +364,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
           </button>
-          <div className="absolute right-0 top-full mt-2 w-64 px-3 py-2.5 rounded-xl border shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style={{ background: isDark ? 'rgba(15,23,42,0.95)' : 'rgba(255,255,255,0.95)', borderColor: cardBorder, color: textSecondary, fontSize: '11px', lineHeight: '1.6', backdropFilter: 'blur(12px)' }}>
+          <div className="absolute right-0 sm:left-auto sm:right-0 top-full mt-2 w-64 sm:w-72 px-3 py-2.5 rounded-xl border shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style={{ background: isDark ? 'rgba(15,23,42,0.95)' : 'rgba(255,255,255,0.95)', borderColor: cardBorder, color: textSecondary, fontSize: '11px', lineHeight: '1.6', backdropFilter: 'blur(12px)' }}>
             <p className="font-medium mb-1" style={{ color: textPrimary }}>{L('📌 ' + t.printTipTitle, '📌 ' + t.printTipTitle)}</p>
             <p>{L('为增强效果，请打印时勾选"打印背景"', t.printTip)}</p>
             <p className="mt-1" style={{ color: textMuted }}>{L('快捷键: ' + t.hotKey, 'Hotkey: ' + t.hotKey)}</p>
@@ -373,19 +373,19 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
         <ThemeToggle theme={theme} onToggle={onTheme} />
       </div>
 
-      <div className="max-w-3xl mx-auto space-y-10">
+      <div className="max-w-3xl mx-auto space-y-6 sm:space-y-10">
 
         {/* Header */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
           {resumeData.name && (
-            <div className="w-24 h-24 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', boxShadow: '0 12px 40px rgba(59,130,246,0.3)' }}>
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', boxShadow: '0 12px 40px rgba(59,130,246,0.3)' }}>
               <img src="https://static.dingtalk.com/media/lADPDhmOzuuAPhjNAt3NAtw_732_733.jpg" alt={resumeData.name} className="w-full h-full object-cover" />
             </div>
           )}
           <div className="flex-1 min-w-0">
-            <h1 className="text-3xl font-bold" style={{ color: textPrimary }}>{L(resumeData.name, resumeData.nameEn)}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: textPrimary }}>{L(resumeData.name, resumeData.nameEn)}</h1>
             <p className="mt-1" style={{ color: textSecondary }}>{L(resumeData.title, resumeData.titleEn)}</p>
-            <div className="flex flex-wrap items-center gap-3 mt-3 text-sm" style={{ color: textMuted }}>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3 text-xs sm:text-sm" style={{ color: textMuted }}>
               <span>{resumeData.email}</span>
               <span>·</span>
               <span>{L(resumeData.location, resumeData.locationEn)}</span>
@@ -404,7 +404,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
 
         {/* Skills */}
         {resumeData.skills.length > 0 && (
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {resumeData.skills.map((skill, i) => (
               <div key={i} className="rounded-xl p-4 border" style={{ background: cardBg, borderColor: cardBorder }}>
                 <p className="text-xs font-medium mb-2" style={{ color: textMuted }}>{L(skill.category, skill.categoryEn || skill.category)}</p>
@@ -425,7 +425,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
 
         {/* Experience - all companies */}
         <section>
-          <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+          <h2 className="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
             <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
             {L('工作经历', 'Experience')}
           </h2>
@@ -434,7 +434,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
             {/* Multi-role companies */}
             {resumeData.companies.map((company, ci) => (
               <div key={'co-' + ci} className="rounded-xl border" style={{ background: cardBg, borderColor: cardBorder }}>
-                <div className="px-5 py-3 border-b flex items-center" style={{ borderColor: cardBorder }}>
+                <div className="px-3 sm:px-5 py-2 sm:py-3 border-b flex items-center" style={{ borderColor: cardBorder }}>
                   <p className="font-medium" style={{ color: textPrimary }}>{L(company.name, company.nameEn)}</p>
                   {(company.tags || []).map(tag => (
                     <span key={tag} className={`ml-2 text-[10px] px-1.5 py-0.5 rounded font-medium ${tagMeituan}`}>{L(tag, tag === '美团' ? 'Meituan' : tag)}</span>
@@ -442,7 +442,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
                 </div>
                 <div className="divide-y" style={{ borderColor: cardBorder }}>
                   {company.roles.map((role, ri) => (
-                    <div key={'role-' + ri} className="p-5">
+                    <div key={'role-' + ri} className="p-3 sm:p-5">
                       <div className="flex items-start justify-between gap-3 flex-wrap">
                         <p className="font-medium text-sm" style={{ color: textSecondary }}>{L(role.role, role.roleEn)}</p>
                         <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{L(role.period, role.periodEn)}</span>
@@ -470,10 +470,10 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
             {/* Single-role companies - same card style */}
             {resumeData.experience.map((exp, i) => (
               <div key={'exp-' + i} className="rounded-xl border" style={{ background: cardBg, borderColor: cardBorder }}>
-                <div className="px-5 py-3 border-b flex items-center" style={{ borderColor: cardBorder }}>
+                <div className="px-3 sm:px-5 py-2 sm:py-3 border-b flex items-center" style={{ borderColor: cardBorder }}>
                   <p className="font-medium" style={{ color: textPrimary }}>{L(exp.company, exp.companyEn)}</p>
                 </div>
-                <div className="p-5">
+                <div className="p-3 sm:p-5">
                   <div className="flex items-start justify-between gap-3 flex-wrap">
                     <p className="font-medium text-sm" style={{ color: textSecondary }}>{L(exp.role, exp.roleEn)}</p>
                     <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{L(exp.period, exp.periodEn)}</span>
@@ -488,7 +488,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
         {/* Original Projects */}
         {resumeData.projects.length > 0 && (
           <section>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+            <h2 className="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
               <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
               {L('项目经历', 'Projects')}
             </h2>
@@ -510,11 +510,11 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
         {/* GitHub Projects */}
         {resumeData.githubProjects.length > 0 && (
           <section>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+            <h2 className="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
               <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
               {L('GitHub 开源项目', 'Open Source Projects')}
             </h2>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {resumeData.githubProjects.map((project) => (
                 <div key={project.name} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
                   <div className="flex items-start justify-between mb-1">
@@ -533,7 +533,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
 {/* Education */}
         {resumeData.education.length > 0 && (
           <section>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+            <h2 className="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
               <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
               {L('教育背景', 'Education')}
             </h2>
