@@ -3,7 +3,7 @@ import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Card, CardContent } from './components/ui/card'
 
-const CORRECT_PASSWORD = 'lirui'
+const CORRECT_PASSWORD='***'
 
 type Theme = 'light' | 'dark'
 
@@ -70,22 +70,28 @@ const resumeData: {
 
   projects: [
     {
-      name: '钉钉宜搭交付体系',
-      tech: '钉钉宜搭 + 低代码平台',
-      description: '从 0 到 1 搭建钉钉宜搭交付体系，完成霍迹寻踪与钉钉宜搭核心代理建立，实现企业级应用快速交付。',
-      link: '',
+      name: 'navcoo-blog',
+      tech: 'React + Spring Boot + TypeScript',
+      description: '现代化全栈个人博客系统，支持分类筛选、暗色模式、响应式布局，无需登录即可浏览所有已发布文章。',
+      link: 'https://github.com/lir-navcoo/navcoo-bolg',
     },
     {
-      name: '客户成功管理体系',
-      tech: 'Spring Boot + MySQL + Redis',
-      description: '搭建交付、运维、续费一体化闭环链路，打通客户全生命周期管理，任职期间续费率显著提升。',
-      link: '',
+      name: 'tool-box',
+      tech: 'React + TypeScript + Tailwind CSS',
+      description: '简洁高效的在线工具箱，支持 JSON 格式化、加密解密、二维码生成、图片格式转换、颜色工具、个税计算器等实用功能。',
+      link: 'https://github.com/lir-navcoo/tool-box',
     },
     {
-      name: '线上线下一体化餐饮方案',
-      tech: '收银系统 + 美团 API 集成',
-      description: '为餐饮商家定制线上线下一体化方案，整合收银、点餐、外卖全流程，提升商家运营效率。',
-      link: '',
+      name: 'coin-flip',
+      tech: 'React + TypeScript + Vite',
+      description: '为选择困难症患者打造的在线掷硬币工具，快速做出艰难决定，支持自定义选项。',
+      link: 'https://github.com/lir-navcoo/coin-flip',
+    },
+    {
+      name: 'resume',
+      tech: 'React + TypeScript + Tailwind CSS',
+      description: '个人简历介绍页面，支持亮色/暗黑模式切换、密码保护解锁查看。',
+      link: 'https://github.com/lir-navcoo/resume',
     },
   ],
 }
