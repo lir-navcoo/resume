@@ -431,91 +431,84 @@ function ResumeContent({
           </section>
         )}
 
-        {/* Companies (multi-role entries) */}
-        {(resumeData as any).companies?.length > 0 && (
-          <section>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
-              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
-              {t.experience}
-            </h2>
-            <div className="space-y-4">
-              {(resumeData as any).companies.map((company: any, ci: number) => (
-                <div key={ci} className="rounded-xl border" style={{ background: cardBg, borderColor: cardBorder }}>
-                  <div className="px-5 py-3 border-b flex items-center justify-between" style={{ borderColor: cardBorder }}>
-                    <div className="flex items-center gap-2">
-                      <p className="font-medium" style={{ color: textPrimary }}>{company.name}</p>
-                      {company.tags?.map((tag: string) => (
-                        <span key={tag} className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${tagMeituan}`}>{tag === '美团' ? meituanLabel : tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="divide-y" style={{ borderColor: cardBorder }}>
-                    {company.roles.map((role: any, ri: number) => (
-                      <div key={ri} className="p-5">
-                        <div className="flex items-start justify-between gap-3 flex-wrap">
-                          <p className="font-medium text-sm" style={{ color: textSecondary }}>{role.role}</p>
-                          <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{role.period}</span>
-                        </div>
-                        {role.description.includes('。') && role.description.match(/^[0-9]、/) ? (
-                          <ol className="mt-2 space-y-1 list-decimal list-inside text-sm" style={{ color: textSecondary }}>
-                            {role.description.split(/(?=[0-9]、)/).filter((s: string) => s.trim()).map((item: string, idx: number) => (
-                              <li key={idx} className="leading-relaxed">{item.replace(/^[0-9}、]+/, '').trim()}</li>
-                            ))}
-                          </ol>
-                        ) : (
-                          <p className="text-sm mt-1 leading-relaxed" style={{ color: textSecondary }}>{role.description}</p>
-                        )}
-                        {role.achievement && (
-                          <div className="mt-3 px-3 py-2 rounded-lg border" style={{ background: isDark ? 'rgba(59,130,246,0.1)' : 'rgba(59,130,246,0.06)', borderColor: isDark ? 'rgba(59,130,246,0.25)' : 'rgba(59,130,246,0.2)' }}>
-                            <p className="text-xs font-medium" style={{ color: isDark ? '#93c5fd' : '#3b82f6' }}>优秀成果：{role.achievement}</p>
-                          </div>
-                        )}
-                      </div>
+        {/* Experience - all entries */}
+        <section>
+          <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+            <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
+            {t.experience}
+          </h2>
+          <div className="space-y-4">
+            {/* Multi-role companies */}
+            {(resumeData as any).companies?.map((company: any, ci: number) => (
+              <div key={'company-' + ci} className="rounded-xl border" style={{ background: cardBg, borderColor: cardBorder }}>
+                <div className="px-5 py-3 border-b flex items-center justify-between" style={{ borderColor: cardBorder }}>
+                  <div className="flex items-center gap-2">
+                    <p className="font-medium" style={{ color: textPrimary }}>{company.name}</p>
+                    {company.tags?.map((tag: string) => (
+                      <span key={tag} className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${tagMeituan}`}>{tag === '美团' ? meituanLabel : tag}</span>
                     ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Single-role experience entries */}
-        {resumeData.experience.length > 0 && (
-          <section>
-            <div className="space-y-3">
-              {resumeData.experience.map((exp, i) => (
-                <div key={i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
-                  <div className="flex items-start justify-between gap-3 flex-wrap">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <p className="font-medium" style={{ color: textPrimary }}>{exp.company}</p>
-                      {exp.tags?.map(tag => (
-                        <span key={tag} className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${tagMeituan}`}>{tag === '美团' ? meituanLabel : tag}</span>
-                      ))}
+                <div className="divide-y" style={{ borderColor: cardBorder }}>
+                  {company.roles.map((role: any, ri: number) => (
+                    <div key={'role-' + ri} className="p-5">
+                      <div className="flex items-start justify-between gap-3 flex-wrap">
+                        <p className="font-medium text-sm" style={{ color: textSecondary }}>{role.role}</p>
+                        <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{role.period}</span>
+                      </div>
+                      {role.description.includes('。') && role.description.match(/^[0-9]、/) ? (
+                        <ol className="mt-2 space-y-1 list-decimal list-inside text-sm" style={{ color: textSecondary }}>
+                          {role.description.split(/(?=[0-9]、)/).filter((s: string) => s.trim()).map((item: string, idx: number) => (
+                            <li key={idx} className="leading-relaxed">{item.replace(/^[0-9}、]+/, '').trim()}</li>
+                          ))}
+                        </ol>
+                      ) : (
+                        <p className="text-sm mt-1 leading-relaxed" style={{ color: textSecondary }}>{role.description}</p>
+                      )}
+                      {role.achievement && (
+                        <div className="mt-3 px-3 py-2 rounded-lg border" style={{ background: isDark ? 'rgba(59,130,246,0.1)' : 'rgba(59,130,246,0.06)', borderColor: isDark ? 'rgba(59,130,246,0.25)' : 'rgba(59,130,246,0.2)' }}>
+                          <p className="text-xs font-medium" style={{ color: isDark ? '#93c5fd' : '#3b82f6' }}>优秀成果：{role.achievement}</p>
+                        </div>
+                      )}
                     </div>
-                    <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{exp.period}</span>
-                  </div>
-                  <p className="text-sm mt-1" style={{ color: textSecondary }}>{exp.role}</p>
-                  {exp.description.includes('。') && exp.description.match(/^[0-9]、/) ? (
-                    <ol className="mt-3 space-y-1 list-decimal list-inside text-sm" style={{ color: textSecondary }}>
-                      {exp.description.split(/(?=[0-9]、)/).filter(s => s.trim()).map((item, idx) => (
-                        <li key={idx} className="leading-relaxed">{item.replace(/^[0-9}、]+/, '').trim()}</li>
-                      ))}
-                    </ol>
-                  ) : (
-                    <p className="text-sm mt-2 leading-relaxed" style={{ color: textSecondary }}>{exp.description}</p>
-                  )}
-                  {(exp as any).achievement && (
-                    <div className="mt-3 px-3 py-2.5 rounded-lg border" style={{ background: isDark ? 'rgba(59,130,246,0.1)' : 'rgba(59,130,246,0.06)', borderColor: isDark ? 'rgba(59,130,246,0.25)' : 'rgba(59,130,246,0.2)' }}>
-                      <p className="text-xs font-medium" style={{ color: isDark ? '#93c5fd' : '#3b82f6' }}>
-                        优秀成果：{(exp as any).achievement}
-                      </p>
-                    </div>
-                  )}
+                  ))}
                 </div>
-              ))}
-            </div>
-          </section>
-        )}
+              </div>
+            ))}
+
+            {/* Single-role entries */}
+            {resumeData.experience.map((exp, i) => (
+              <div key={'exp-' + i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
+                <div className="flex items-start justify-between gap-3 flex-wrap">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <p className="font-medium" style={{ color: textPrimary }}>{exp.company}</p>
+                    {exp.tags?.map(tag => (
+                      <span key={tag} className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${tagMeituan}`}>{tag === '美团' ? meituanLabel : tag}</span>
+                    ))}
+                  </div>
+                  <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{exp.period}</span>
+                </div>
+                <p className="text-sm mt-1" style={{ color: textSecondary }}>{exp.role}</p>
+                {exp.description.includes('。') && exp.description.match(/^[0-9]、/) ? (
+                  <ol className="mt-3 space-y-1 list-decimal list-inside text-sm" style={{ color: textSecondary }}>
+                    {exp.description.split(/(?=[0-9]、)/).filter(s => s.trim()).map((item, idx) => (
+                      <li key={idx} className="leading-relaxed">{item.replace(/^[0-9}、]+/, '').trim()}</li>
+                    ))}
+                  </ol>
+                ) : (
+                  <p className="text-sm mt-2 leading-relaxed" style={{ color: textSecondary }}>{exp.description}</p>
+                )}
+                {(exp as any).achievement && (
+                  <div className="mt-3 px-3 py-2.5 rounded-lg border" style={{ background: isDark ? 'rgba(59,130,246,0.1)' : 'rgba(59,130,246,0.06)', borderColor: isDark ? 'rgba(59,130,246,0.25)' : 'rgba(59,130,246,0.2)' }}>
+                    <p className="text-xs font-medium" style={{ color: isDark ? '#93c5fd' : '#3b82f6' }}>
+                      优秀成果：{(exp as any).achievement}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Original Projects */}
         {resumeData.projects.length > 0 && (
