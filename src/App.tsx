@@ -67,7 +67,7 @@ const labelsEn = {
   downloadPdf: 'Download PDF', language: '中', switchLang: '中文',
 } as const
 
-const i18n = (lang: 'zh' | 'en') => lang === 'en' ? labelsEn : labels
+const i18n = (lang: 'zh' | 'en'): Labels => lang === 'en' ? labelsEn : labels
 
 // ── Theme toggle button ────────────────────────────────────────────
 function ThemeToggle({ theme, onToggle }: { theme: Theme; onToggle: () => void }) {
@@ -265,13 +265,13 @@ function PasswordScreen({ onUnlock, theme, onTheme }: { onUnlock: () => void; th
 
 // ── Resume content ──────────────────────────────────────────────────
 type Lang = 'zh' | 'en'
-type Labels = typeof labels
+type Labels = Record<string, string>
 
 function ResumeContent({
   theme, onTheme, lang, t, onLang,
 }: {
   theme: Theme; onTheme: () => void
-  lang: Lang; t: Labels; onLang: () => void
+  lang: Lang; t: Record<string, string>; onLang: () => void
 }) {
   const isDark = theme === 'dark'
   const bg = isDark
@@ -486,7 +486,7 @@ export default function App() {
 
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
   const toggleLang = () => setLang((l) => (l === 'zh' ? 'en' : 'zh'))
-  const t = i18n(lang)
+  const t = i18n(lang) as Labels
 
   return unlocked
     ? <ResumeContent theme={theme} onTheme={toggleTheme} lang={lang} t={t} onLang={toggleLang} />
