@@ -2,8 +2,6 @@
 
 > 🔒 密码保护的个人简历页面，输入密码即可查看
 
-**在线访问**：[https://421fynudt3rn.space.minimaxi.com](https://421fynudt3rn.space.minimaxi.com)
-
 ---
 
 ## 🔐 访问密码
@@ -47,16 +45,3 @@ npm install
 # 启动开发服务器
 npm run dev
 ```
-
----
-
-## 🔐 密码修改说明
-
-如需修改访问密码，请编辑源码中的 `CORRECT_PASSWORD` 常量：
-
-```ts
-// src/App.tsx
-const CORRECT_PASSWORD = 'your-password'
-```
-
-修改后重新 build 并部署即可。
