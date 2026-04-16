@@ -453,17 +453,17 @@ function ResumeContent({
               <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
               {t.githubProjects}
             </h2>
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
               {resumeData.githubProjects.map((project) => (
                 <div key={project.name} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
-                  <div className="flex items-start justify-between mb-1">
-                    <p className="font-medium" style={{ color: textPrimary }}>{project.name}</p>
+                  <div className="flex items-start justify-between mb-1 gap-2">
+                    <p className="font-medium text-sm" style={{ color: textPrimary }}>{project.name}</p>
                     {project.link && (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-xs" style={{ color: '#60a5fa' }}>查看源码 ↗</a>
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-xs whitespace-nowrap" style={{ color: '#60a5fa' }}>↗</a>
                     )}
                   </div>
-                  {project.tech && <p className="text-xs mb-2" style={{ color: textMuted }}>{project.tech}</p>}
-                  <p className="text-sm leading-relaxed" style={{ color: textSecondary }}>{project.description}</p>
+                  {project.tech && <p className="text-[11px] mb-2" style={{ color: textMuted }}>{project.tech}</p>}
+                  <p className="text-xs leading-relaxed" style={{ color: textSecondary }}>{project.description}</p>
                 </div>
               ))}
             </div>
