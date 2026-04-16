@@ -21,10 +21,10 @@ const resumeData = {
   ],
 
   experience: [
-    { company: '安徽霍迹寻踪科技有限公司', period: '2022.10 – 至今', role: '解决方案中心经理', description: '从 0 到 1 建立霍迹寻踪解决方案体系，主导技术架构设计，带领团队完成多个大型项目交付，负责客户成功全链路管理。', tags: [] },
-    { company: '安徽霍迹寻踪科技有限公司', period: '2021.06 – 2022.10', role: '客户成功部经理', description: '负责客户成功部日常管理，制定交付、售后、续费规则，搭建交付与运维一体化闭环链路。完成钉钉宜搭交付体系从 0 到 1 建设，建立霍迹寻踪与钉钉宜搭核心代理体系。', tags: [] },
-    { company: '天津汉博信息技术有限公司', period: '2020.09 – 2021.05', role: '客户成功经理', description: '1、负责执行公司整体客户策略。2、负责存量客户的续费指标，相关业绩完成。3、负责服务支持，做好管理、培训等。4、负责存量 VIP 客户的服务支持、续约等工作。', tags: ['美团'] },
-    { company: '天津汉博信息技术有限公司', period: '2018.09 – 2020.09', role: 'IT技术支持', description: '1、日常负责合肥及周边城市的收银系统的安装和培训以及存量收银系统商家收银系统的售后维护。2、为商家定制打造线上线下一体化餐厅。3、留存活跃商家和高质量商家。\n\n业绩：任职期间参与美团点评繁星计划（M0 培训）获第三名，优秀学员称号。', tags: ['美团'] },
+    { company: '安徽霍迹寻踪科技有限公司', period: '2022.10 – 至今', role: '解决方案中心经理', description: '从 0 到 1 建立霍迹寻踪解决方案体系，主导技术架构设计，带领团队完成多个大型项目交付，负责客户成功全链路管理。', tags: [], achievement: '完成霍迹寻踪客户成功体系建设，构建交付、运维一体化闭环链路，任职期间完成钉钉宜搭交付体系从 0 到 1 建设，完成霍迹寻踪与钉钉宜搭核心代理的建立。' },
+    { company: '安徽霍迹寻踪科技有限公司', period: '2021.06 – 2022.10', role: '客户成功部经理', description: '1、负责客户成功部日常事物安排。2、制定客户交付、售后、续费等相关规则制定。3、分析制定每个员工的业绩。4、帮助员工提高交付质量，提升续费率。', tags: [], achievement: '担任客户成功部负责人，完成霍迹寻踪客户成功体系建设，构建交付、运维一体化闭环链路，任职期间完成钉钉宜搭交付体系从 0 到 1 建设，完成霍迹寻踪与钉钉宜搭核心代理的建立。' },
+    { company: '天津汉博信息技术有限公司', period: '2020.09 – 2021.05', role: '客户成功经理', description: '1、负责执行公司整体客户策略。2、负责存量客户的续费指标，相关业绩完成。3、负责服务支持，做好管理、培训等。4、负责存量 VIP 客户的服务支持、续约等工作。', tags: ['美团'], achievement: '获美团收银事业部三星分享师称号，全国排名第二。' },
+    { company: '天津汉博信息技术有限公司', period: '2018.09 – 2020.09', role: 'IT技术支持', description: '1、日常负责合肥及周边城市的收银系统的安装和培训以及存量收银系统商家收银系统的售后维护。2、为商家定制打造线上线下一体化餐厅。3、留存活跃商家和高质量商家。', tags: ['美团'], achievement: '任职期间参与美团点评繁星计划（M0 培训）获第三名，优秀学员称号。' },
     { company: '马鞍山天禧科技有限公司', period: '2017.09 – 2018.04', role: '运维工程师', description: '甲方为阳光雨露信息技术服务有限公司，日常负责海尔工业园合肥园区的计算机维护、服务器管理、机房管理、网络管理、资产管理等技术支持。', tags: [] },
     { company: '安徽七禾田餐饮管理有限公司', period: '2018.04 – 2018.09', role: 'IT技术支持', description: '负责集团总部计算机维护、网络维护、服务器管理及资产信息化管理。主导搬迁新办公环境的网络及设备验收工作，建立资产信息化管理系统与多媒体信息化办公体系。', tags: [] },
   ],
@@ -403,7 +403,22 @@ function ResumeContent({
                     <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{exp.period}</span>
                   </div>
                   <p className="text-sm mt-1" style={{ color: textSecondary }}>{exp.role}</p>
-                  <p className="text-sm mt-2 leading-relaxed" style={{ color: textSecondary }}>{exp.description}</p>
+                  {exp.description.includes('。') && exp.description.match(/^[0-9]、/) ? (
+                    <ol className="mt-3 space-y-1 list-decimal list-inside text-sm" style={{ color: textSecondary }}>
+                      {exp.description.split(/(?=[0-9]、)/).filter(s => s.trim()).map((item, idx) => (
+                        <li key={idx} className="leading-relaxed">{item.replace(/^[0-9}、]+/, '').trim()}</li>
+                      ))}
+                    </ol>
+                  ) : (
+                    <p className="text-sm mt-2 leading-relaxed" style={{ color: textSecondary }}>{exp.description}</p>
+                  )}
+                  {(exp as any).achievement && (
+                    <div className="mt-3 px-3 py-2.5 rounded-lg border" style={{ background: isDark ? 'rgba(59,130,246,0.1)' : 'rgba(59,130,246,0.06)', borderColor: isDark ? 'rgba(59,130,246,0.25)' : 'rgba(59,130,246,0.2)' }}>
+                      <p className="text-xs font-medium" style={{ color: isDark ? '#93c5fd' : '#3b82f6' }}>
+                        优秀成果：{(exp as any).achievement}
+                      </p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
