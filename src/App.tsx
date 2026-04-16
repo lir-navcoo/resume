@@ -93,6 +93,12 @@ const resumeData: {
       description: '个人简历介绍页面，支持亮色/暗黑模式切换、密码保护解锁查看。',
       link: 'https://github.com/lir-navcoo/resume',
     },
+    {
+      name: 'yida-add-tampermonkey',
+      tech: 'Tampermonkey + 宜搭 API',
+      description: '宜搭效率升级工具油猴脚本，增强宜搭应用功能，提升表单填写和数据处理效率。',
+      link: 'https://github.com/lir-navcoo/yida-add-tampermonkey',
+    },
   ],
 }
 
