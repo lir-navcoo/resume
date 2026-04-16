@@ -376,8 +376,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
         <div className="flex items-center gap-6">
           {resumeData.name && (
             <div className="w-24 h-24 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', boxShadow: '0 12px 40px rgba(59,130,246,0.3)' }}>
-              <img src="/avatar.jpg" alt={resumeData.name} className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; (e.target as HTMLImageElement).nextElementSibling?.removeAttribute('hidden'); }} />
-              <span className="text-white text-3xl font-bold" hidden>{resumeData.name[0]}</span>
+              <img src="/avatar.jpg" alt={resumeData.name} className="w-full h-full object-cover" />
             </div>
           )}
           <div className="flex-1 min-w-0">
