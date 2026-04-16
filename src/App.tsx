@@ -20,10 +20,33 @@ const resumeData = {
     { school: '徽商职业学院', degree: '大专', major: '软件技术', period: '2015.09 – 2018.06' },
   ],
 
+  companies: [
+    {
+      name: '安徽霍迹寻踪科技有限公司',
+      roles: [
+        {
+          period: '2024.10 – 至今',
+          role: '大客户 CSM',
+          description: '负责大客户客户成功管理，涵盖服务交付、续费管理及客户关系维护，服务阳光电源、丽豪清能、立方制药、济川药业、天准科技、卓郎智能等多家企业。',
+          achievement: '',
+        },
+        {
+          period: '2022.10 – 2024.09',
+          role: '解决方案中心经理',
+          description: '从 0 到 1 建立霍迹寻踪解决方案体系，主导技术架构设计，负责售前咨询与客户需求梳理，带领团队完成多个大型项目交付（其中阳光电源接待服务平台 1-4 期即为任期内主导签约落地）。负责客户成功全链路管理。',
+          achievement: '2023年1月获公司合伙人荣誉。',
+        },
+        {
+          period: '2021.06 – 2022.10',
+          role: '客户成功部经理',
+          description: '1、负责客户成功部日常事物安排。2、制定客户交付、售后、续费等相关规则制定。3、分析制定每个员工的业绩。4、帮助员工提高交付质量，提升续费率。',
+          achievement: '担任客户成功部负责人，完成霍迹寻踪客户成功体系建设，构建交付、运维一体化闭环链路，任职期间完成钉钉宜搭交付体系从 0 到 1 建设，完成霍迹寻踪与钉钉宜搭核心代理的建立。',
+        },
+      ],
+    },
+  ],
+
   experience: [
-    { company: '安徽霍迹寻踪科技有限公司', period: '2022.10 – 2024.09', role: '解决方案中心经理', description: '从 0 到 1 建立霍迹寻踪解决方案体系，主导技术架构设计，负责售前咨询与客户需求梳理，带领团队完成多个大型项目交付（其中阳光电源接待服务平台 1-4 期即为任期内主导签约落地）。负责客户成功全链路管理。', tags: [], achievement: '2023年1月获公司合伙人荣誉。' },
-    { company: '安徽霍迹寻踪科技有限公司', period: '2024.10 – 至今', role: '大客户 CSM', description: '负责大客户客户成功管理，涵盖服务交付、续费管理及客户关系维护，服务阳光电源、丽豪清能、立方制药、济川药业、天准科技、卓朗智能等多家企业。', tags: [] },
-    { company: '安徽霍迹寻踪科技有限公司', period: '2021.06 – 2022.10', role: '客户成功部经理', description: '1、负责客户成功部日常事物安排。2、制定客户交付、售后、续费等相关规则制定。3、分析制定每个员工的业绩。4、帮助员工提高交付质量，提升续费率。', tags: [], achievement: '担任客户成功部负责人，完成霍迹寻踪客户成功体系建设，构建交付、运维一体化闭环链路，任职期间完成钉钉宜搭交付体系从 0 到 1 建设，完成霍迹寻踪与钉钉宜搭核心代理的建立。' },
     { company: '天津汉博信息技术有限公司', period: '2020.09 – 2021.05', role: '客户成功经理', description: '1、负责执行公司整体客户策略。2、负责存量客户的续费指标，相关业绩完成。3、负责服务支持，做好管理、培训等。4、负责存量 VIP 客户的服务支持、续约等工作。', tags: ['美团'], achievement: '获美团收银事业部三星分享师称号，全国排名第二。' },
     { company: '天津汉博信息技术有限公司', period: '2018.09 – 2020.09', role: 'IT技术支持', description: '1、日常负责合肥及周边城市的收银系统的安装和培训以及存量收银系统商家收银系统的售后维护。2、为商家定制打造线上线下一体化餐厅。3、留存活跃商家和高质量商家。', tags: ['美团'], achievement: '任职期间参与美团点评繁星计划（M0 培训）获第三名，优秀学员称号。' },
     { company: '马鞍山天禧科技有限公司', period: '2017.09 – 2018.04', role: '运维工程师', description: '甲方为阳光雨露信息技术服务有限公司，日常负责海尔工业园合肥园区的计算机维护、服务器管理、机房管理、网络管理、资产管理等技术支持。', tags: [] },
@@ -33,8 +56,8 @@ const resumeData = {
   about: `擅长 React 与 Spring Boot 技术栈，作为技术经理带领过 10 人以上研发交付团队，擅长从需求出发设计高可用技术方案，具备较强的逻辑思维与学习能力。`,
 
   skills: [
-    { category: '前端技术', items: ['React', 'TypeScript', 'Next.js', 'Vite', 'Tailwind CSS'] },
-    { category: '后端技术', items: ['Spring Boot', 'Java', 'Node.js', 'MySQL', 'Redis'] },
+    { category: '前端技术', items: ['React', 'TypeScript', 'Next.js', 'Vite', 'Tailwind CSS', 'Shadcn/UI', 'AliLowCodeEngine'] },
+    { category: '后端技术', items: ['Spring Boot', 'Spring Cloud', 'Java', 'Node.js', 'MySQL', 'Redis'] },
     { category: '架构 & 管理', items: ['系统架构设计', '团队管理', '需求分析', '技术方案设计'] },
     { category: '认证资质', items: ['美团高级认证工程师', '钉钉培训中心认证讲师', '宜搭高级认证讲师', '高级低代码开发师'] },
   ],
@@ -390,13 +413,54 @@ function ResumeContent({
           </section>
         )}
 
-        {/* Experience */}
-        {resumeData.experience.length > 0 && (
+        {/* Companies (multi-role entries) */}
+        {(resumeData as any).companies?.length > 0 && (
           <section>
             <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
               <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
               {t.experience}
             </h2>
+            <div className="space-y-4">
+              {(resumeData as any).companies.map((company: any, ci: number) => (
+                <div key={ci} className="rounded-xl border" style={{ background: cardBg, borderColor: cardBorder }}>
+                  <div className="px-5 py-3 border-b flex items-center justify-between" style={{ borderColor: cardBorder }}>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium" style={{ color: textPrimary }}>{company.name}</p>
+                    </div>
+                  </div>
+                  <div className="divide-y" style={{ borderColor: cardBorder }}>
+                    {company.roles.map((role: any, ri: number) => (
+                      <div key={ri} className="p-5">
+                        <div className="flex items-start justify-between gap-3 flex-wrap">
+                          <p className="font-medium text-sm" style={{ color: textSecondary }}>{role.role}</p>
+                          <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{role.period}</span>
+                        </div>
+                        {role.description.includes('。') && role.description.match(/^[0-9]、/) ? (
+                          <ol className="mt-2 space-y-1 list-decimal list-inside text-sm" style={{ color: textSecondary }}>
+                            {role.description.split(/(?=[0-9]、)/).filter((s: string) => s.trim()).map((item: string, idx: number) => (
+                              <li key={idx} className="leading-relaxed">{item.replace(/^[0-9}、]+/, '').trim()}</li>
+                            ))}
+                          </ol>
+                        ) : (
+                          <p className="text-sm mt-1 leading-relaxed" style={{ color: textSecondary }}>{role.description}</p>
+                        )}
+                        {role.achievement && (
+                          <div className="mt-3 px-3 py-2 rounded-lg border" style={{ background: isDark ? 'rgba(59,130,246,0.1)' : 'rgba(59,130,246,0.06)', borderColor: isDark ? 'rgba(59,130,246,0.25)' : 'rgba(59,130,246,0.2)' }}>
+                            <p className="text-xs font-medium" style={{ color: isDark ? '#93c5fd' : '#3b82f6' }}>优秀成果：{role.achievement}</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Single-role experience entries */}
+        {resumeData.experience.length > 0 && (
+          <section>
             <div className="space-y-3">
               {resumeData.experience.map((exp, i) => (
                 <div key={i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
