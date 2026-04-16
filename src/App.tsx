@@ -57,7 +57,8 @@ const resumeData = {
           role: '客户成功部经理',
           roleEn: 'Customer Success Manager',
           description: '1、负责客户成功部日常事物安排。2、制定客户交付、售后、续费等相关规则制定。3、分析制定每个员工的业绩。4、帮助员工提高交付质量，提升续费率。',
-          descriptionEn: '1. Responsible for daily operations of Customer Success Department. 2. Established customer delivery, after-sales, and renewal policies. 3. Set and analyzed performance metrics for each employee. 4. Helped team improve delivery quality and renewal rates.',
+          descriptionEn: '1、负责客户成功部日常事物安排。2、制定客户交付、售后、续费等相关规则制定。3、分析制定每个员工的业绩。4、帮助员工提高交付质量，提升续费率。',
+          itemsEn: ['Responsible for daily operations of Customer Success Department', 'Established customer delivery, after-sales, and renewal policies', 'Set and analyzed performance metrics for each employee', 'Helped team improve delivery quality and renewal rates'],
           achievement: '担任客户成功部负责人，完成霍迹寻踪客户成功体系建设，构建交付、运维一体化闭环链路，任职期间完成钉钉宜搭交付体系从 0 到 1 建设，完成霍迹寻踪与钉钉宜搭核心代理的建立。',
           achievementEn: 'Led customer success system building, constructed integrated delivery and operations closed-loop. Completed DingTalk Yida delivery system from scratch and established core DingTalk Yida agency partnership.',
         },
@@ -75,7 +76,8 @@ const resumeData = {
           role: '客户成功经理',
           roleEn: 'Customer Success Manager',
           description: '1、负责执行公司整体客户策略。2、负责存量客户的续费指标，相关业绩完成。3、负责服务支持，做好管理、培训等。4、负责存量 VIP 客户的服务支持、续约等工作。',
-          descriptionEn: '1. Executed overall company customer strategy. 2. Managed renewal targets for existing customers, achieving related performance goals. 3. Oversaw service support, management, and training. 4. Managed VIP customer service support and contract renewals.',
+          descriptionEn: '1、负责执行公司整体客户策略。2、负责存量客户的续费指标，相关业绩完成。3、负责服务支持，做好管理、培训等。4、负责存量 VIP 客户的服务支持、续约等工作。',
+          itemsEn: ['Executed overall company customer strategy', 'Managed renewal targets for existing customers, achieving related performance goals', 'Oversaw service support, management, and training', 'Managed VIP customer service support and contract renewals'],
           achievement: '获美团收银事业部三星分享师称号，全国排名第二。',
           achievementEn: 'Awarded Meituan Cashier Division Three-Star Sharing Expert, ranked 2nd nationwide.',
         },
@@ -85,7 +87,8 @@ const resumeData = {
           role: 'IT技术支持',
           roleEn: 'IT Technical Support',
           description: '1、日常负责合肥及周边城市的收银系统的安装和培训以及存量收银系统商家收银系统的售后维护。2、为商家定制打造线上线下一体化餐厅。3、留存活跃商家和高质量商家。',
-          descriptionEn: '1. Responsible for cashier system installation, training, and after-sales maintenance for merchants in Hefei and surrounding cities. 2. Customized and built integrated online-offline restaurant solutions for merchants. 3. Retained active and high-quality merchants.',
+          descriptionEn: '1、日常负责合肥及周边城市的收银系统的安装和培训以及存量收银系统商家收银系统的售后维护。2、为商家定制打造线上线下一体化餐厅。3、留存活跃商家和高质量商家。',
+          itemsEn: ['Responsible for cashier system installation, training, and after-sales maintenance for merchants in Hefei and surrounding cities', 'Customized and built integrated online-offline restaurant solutions for merchants', 'Retained active and high-quality merchants'],
           achievement: '任职期间参与美团点评繁星计划（M0 培训）获第三名，优秀学员称号。',
           achievementEn: 'Participated in Meituan Dianping Star Program (M0 Training), ranked 3rd and named Outstanding Trainee.',
         },
@@ -454,7 +457,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
                       {role.description.includes('。') && role.description.match(/^[0-9]、/) ? (
                         <ol className="mt-2 space-y-1 list-decimal list-inside text-sm" style={{ color: textSecondary }}>
                           {role.description.split(/(?=[0-9]、)/).filter(s => s.trim()).map((item, idx) => (
-                            <li key={idx} className="leading-relaxed">{L(item.replace(/^[0-9}、]+/, '').trim(), (role.descriptionEn || '').split(/(?=[0-9]、)/).filter((s: string) => s.trim())[idx]?.replace(/^[0-9}、]+/, '').trim() || item.replace(/^[0-9}、]+/, '').trim())}</li>
+                            <li key={idx} className="leading-relaxed">{L(item.replace(/^[0-9}、]+/, '').trim(), (role as any).itemsEn?.[idx] || item.replace(/^[0-9}、]+/, '').trim())}</li>
                           ))}
                         </ol>
                       ) : (
