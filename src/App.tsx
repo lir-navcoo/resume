@@ -127,8 +127,8 @@ const resumeData = {
   skills: [
     { category: '前端技术', categoryEn: 'Frontend', items: ['React', 'TypeScript', 'Next.js', 'Vite', 'Tailwind CSS', 'Shadcn/UI', 'AliLowCodeEngine'] },
     { category: '后端技术', categoryEn: 'Backend', items: ['Spring Boot', 'Spring Cloud', 'Java', 'Node.js', 'MySQL', 'Redis'] },
-    { category: '架构 & 管理', categoryEn: 'Architecture & Management', items: ['系统架构设计', '团队管理', '需求分析', '技术方案设计'] },
-    { category: '认证资质', categoryEn: 'Certifications', items: ['美团高级认证工程师', '钉钉培训中心认证讲师', '宜搭高级认证讲师', '高级低代码开发师'] },
+    { category: '架构 & 管理', categoryEn: 'Architecture & Management', items: ['系统架构设计', '团队管理', '需求分析', '技术方案设计'], itemsEn: ['System Architecture Design', 'Team Management', 'Requirements Analysis', 'Technical Solution Design'] },
+    { category: '认证资质', categoryEn: 'Certifications', items: ['美团高级认证工程师', '钉钉培训中心认证讲师', '宜搭高级认证讲师', '高级低代码开发师'], itemsEn: ['Meituan Senior Certified Engineer', 'DingTalk Training Center Certified Instructor', 'Yida Senior Certified Instructor', 'Senior Low-Code Developer'] },
   ],
 
   projects: [
@@ -409,9 +409,14 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
               <div key={i} className="rounded-xl p-4 border" style={{ background: cardBg, borderColor: cardBorder }}>
                 <p className="text-xs font-medium mb-2" style={{ color: textMuted }}>{L(skill.category, skill.categoryEn || skill.category)}</p>
                 <div className="flex flex-wrap gap-1.5">
-                  {skill.items.map((item) => (
-                    <span key={item} className="text-xs px-2 py-0.5 rounded-md" style={{ background: badgeBg, color: textSecondary }}>{item}</span>
-                  ))}
+                  {(skill as any).itemsEn
+                    ? (skill as any).itemsEn.map((itemEn: string, idx: number) => (
+                        <span key={itemEn} className="text-xs px-2 py-0.5 rounded-md" style={{ background: badgeBg, color: textSecondary }}>{L(skill.items[idx], itemEn)}</span>
+                      ))
+                    : skill.items.map((item: string) => (
+                        <span key={item} className="text-xs px-2 py-0.5 rounded-md" style={{ background: badgeBg, color: textSecondary }}>{item}</span>
+                      ))
+                  }
                 </div>
               </div>
             ))}
@@ -560,10 +565,10 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
 // ── Root App ─────────────────────────────────────────────────────
 export default function App() {
   const [unlocked, setUnlocked] = useState(false)
-  const [theme, setTheme] = useState<Theme>('light')
-  const [lang, setLang] = useState<'zh' | 'en'>('zh')
-  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
-  const toggleLang = () => setLang((l) => (l === 'zh' ? 'en' : 'zh'))
+  const [theme, setTheme] = useState<Theme>((localStorage.getItem('theme') as Theme) || 'light')
+  const [lang, setLang] = useState<'zh' | 'en'>((localStorage.getItem('lang') as 'zh' | 'en') || 'zh')
+  const toggleTheme = () => setTheme((t) => { const next = t === 'dark' ? 'light' : 'dark'; localStorage.setItem('theme', next); return next })
+  const toggleLang = () => setLang((l) => { const next = l === 'zh' ? 'en' : 'zh'; localStorage.setItem('lang', next); return next })
   const t = i18n(lang) as Labels
   return unlocked ? <ResumeContent theme={theme} onTheme={toggleTheme} lang={lang} t={t} onLang={toggleLang} /> : <PasswordScreen onUnlock={() => setUnlocked(true)} theme={theme} onTheme={toggleTheme} />
 }
