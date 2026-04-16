@@ -394,30 +394,7 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
           </div>
         </div>
 
-        {/* Education */}
-        {resumeData.education.length > 0 && (
-          <section>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
-              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
-              {L('教育背景', 'Education')}
-            </h2>
-            <div className="space-y-3">
-              {resumeData.education.map((edu, i) => (
-                <div key={i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-medium" style={{ color: textPrimary }}>{L(edu.school, edu.schoolEn)}</p>
-                      <p className="text-sm mt-0.5" style={{ color: textSecondary }}>{L(edu.degree, edu.degreeEn)} · {L(edu.major, edu.majorEn)}</p>
-                    </div>
-                    <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{edu.period}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* About */}
+              {/* About */}
         {resumeData.about && (
           <section>
             <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
@@ -556,7 +533,32 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
           </section>
         )}
 
-        <footer className="text-center text-xs pt-4" style={{ color: textMuted }}>
+  
+{/* Education */}
+        {resumeData.education.length > 0 && (
+          <section>
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
+              {L('教育背景', 'Education')}
+            </h2>
+            <div className="space-y-3">
+              {resumeData.education.map((edu, i) => (
+                <div key={i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-medium" style={{ color: textPrimary }}>{L(edu.school, edu.schoolEn)}</p>
+                      <p className="text-sm mt-0.5" style={{ color: textSecondary }}>{L(edu.degree, edu.degreeEn)} · {L(edu.major, edu.majorEn)}</p>
+                    </div>
+                    <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{edu.period}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+  
+      <footer className="text-center text-xs pt-4" style={{ color: textMuted }}>
           © {new Date().getFullYear()} {resumeData.name} · Built with React + Tailwind CSS
         </footer>
       </div>
