@@ -399,35 +399,23 @@ function ResumeContent({ theme, onTheme, lang, t, onLang }: { theme: Theme; onTh
 
               {/* About */}
         {resumeData.about && (
-          <section>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
-              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
-              {L('关于我', 'About Me')}
-            </h2>
-            <p className="leading-relaxed" style={{ color: textSecondary }}>{L(resumeData.about, resumeData.aboutEn)}</p>
-          </section>
+          <p className="leading-relaxed" style={{ color: textSecondary }}>{L(resumeData.about, resumeData.aboutEn)}</p>
         )}
 
         {/* Skills */}
         {resumeData.skills.length > 0 && (
-          <section>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
-              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
-              {L('技能清单', 'Skills')}
-            </h2>
-            <div className="grid grid-cols-2 gap-3">
-              {resumeData.skills.map((skill, i) => (
-                <div key={i} className="rounded-xl p-4 border" style={{ background: cardBg, borderColor: cardBorder }}>
-                  <p className="text-xs font-medium mb-2" style={{ color: textMuted }}>{L(skill.category, skill.categoryEn || skill.category)}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {skill.items.map((item) => (
-                      <span key={item} className="text-xs px-2 py-0.5 rounded-md" style={{ background: badgeBg, color: textSecondary }}>{item}</span>
-                    ))}
-                  </div>
+          <div className="grid grid-cols-2 gap-3">
+            {resumeData.skills.map((skill, i) => (
+              <div key={i} className="rounded-xl p-4 border" style={{ background: cardBg, borderColor: cardBorder }}>
+                <p className="text-xs font-medium mb-2" style={{ color: textMuted }}>{L(skill.category, skill.categoryEn || skill.category)}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {skill.items.map((item) => (
+                    <span key={item} className="text-xs px-2 py-0.5 rounded-md" style={{ background: badgeBg, color: textSecondary }}>{item}</span>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </section>
+              </div>
+            ))}
+          </div>
         )}
 
         {/* Experience - all companies */}
