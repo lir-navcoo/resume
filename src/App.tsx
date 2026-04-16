@@ -174,14 +174,15 @@ function PasswordScreen({ onUnlock, theme, onTheme }: { onUnlock: () => void; th
         />
       </div>
 
-      <ThemeToggle theme={theme} onToggle={onTheme} />
-
       <div className="w-full max-w-xs relative z-10">
         <Card
           className="border shadow-2xl"
           style={{ background: cardBg, backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderColor: cardBorder }}
         >
           <CardContent className="pt-7 pb-7 px-7">
+            <div className="flex justify-end mb-4">
+              <ThemeToggle theme={theme} onToggle={onTheme} />
+            </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-3">
                 <label
@@ -351,29 +352,6 @@ function ResumeContent({
           </div>
         </div>
 
-        {/* Education */}
-        {resumeData.education.length > 0 && (
-          <section>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
-              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
-              {t.education}
-            </h2>
-            <div className="space-y-3">
-              {resumeData.education.map((edu, i) => (
-                <div key={i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-medium" style={{ color: textPrimary }}>{edu.school}</p>
-                      <p className="text-sm mt-0.5" style={{ color: textSecondary }}>{edu.degree} · {edu.major}</p>
-                    </div>
-                    <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{edu.period}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* About */}
         {resumeData.about && (
           <section>
@@ -457,6 +435,31 @@ function ResumeContent({
             </div>
           </section>
         )}
+
+        {/* Education */}
+        {resumeData.education.length > 0 && (
+          <section>
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
+              {t.education}
+            </h2>
+            <div className="space-y-3">
+              {resumeData.education.map((edu, i) => (
+                <div key={i} className="rounded-xl p-5 border" style={{ background: cardBg, borderColor: cardBorder }}>
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-medium" style={{ color: textPrimary }}>{edu.school}</p>
+                      <p className="text-sm mt-0.5" style={{ color: textSecondary }}>{edu.degree} · {edu.major}</p>
+                    </div>
+                    <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{edu.period}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+
 
         {/* GitHub Projects */}
         {resumeData.githubProjects.length > 0 && (
