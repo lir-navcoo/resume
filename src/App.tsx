@@ -44,11 +44,29 @@ const resumeData = {
         },
       ],
     },
+    {
+      name: '天津汉博信息技术有限公司',
+      tags: ['美团'],
+      roles: [
+        {
+          period: '2020.09 – 2021.05',
+          role: '客户成功经理',
+          description: '1、负责执行公司整体客户策略。2、负责存量客户的续费指标，相关业绩完成。3、负责服务支持，做好管理、培训等。4、负责存量 VIP 客户的服务支持、续约等工作。',
+          achievement: '获美团收银事业部三星分享师称号，全国排名第二。',
+        },
+        {
+          period: '2018.09 – 2020.09',
+          role: 'IT技术支持',
+          description: '1、日常负责合肥及周边城市的收银系统的安装和培训以及存量收银系统商家收银系统的售后维护。2、为商家定制打造线上线下一体化餐厅。3、留存活跃商家和高质量商家。',
+          achievement: '任职期间参与美团点评繁星计划（M0 培训）获第三名，优秀学员称号。',
+        },
+      ],
+    },
   ],
 
   experience: [
-    { company: '天津汉博信息技术有限公司', period: '2020.09 – 2021.05', role: '客户成功经理', description: '1、负责执行公司整体客户策略。2、负责存量客户的续费指标，相关业绩完成。3、负责服务支持，做好管理、培训等。4、负责存量 VIP 客户的服务支持、续约等工作。', tags: ['美团'], achievement: '获美团收银事业部三星分享师称号，全国排名第二。' },
-    { company: '天津汉博信息技术有限公司', period: '2018.09 – 2020.09', role: 'IT技术支持', description: '1、日常负责合肥及周边城市的收银系统的安装和培训以及存量收银系统商家收银系统的售后维护。2、为商家定制打造线上线下一体化餐厅。3、留存活跃商家和高质量商家。', tags: ['美团'], achievement: '任职期间参与美团点评繁星计划（M0 培训）获第三名，优秀学员称号。' },
+    
+    
     { company: '马鞍山天禧科技有限公司', period: '2017.09 – 2018.04', role: '运维工程师', description: '甲方为阳光雨露信息技术服务有限公司，日常负责海尔工业园合肥园区的计算机维护、服务器管理、机房管理、网络管理、资产管理等技术支持。', tags: [] },
     { company: '安徽七禾田餐饮管理有限公司', period: '2018.04 – 2018.09', role: 'IT技术支持', description: '负责集团总部计算机维护、网络维护、服务器管理及资产信息化管理。主导搬迁新办公环境的网络及设备验收工作，建立资产信息化管理系统与多媒体信息化办公体系。', tags: [] },
   ],
@@ -426,6 +444,9 @@ function ResumeContent({
                   <div className="px-5 py-3 border-b flex items-center justify-between" style={{ borderColor: cardBorder }}>
                     <div className="flex items-center gap-2">
                       <p className="font-medium" style={{ color: textPrimary }}>{company.name}</p>
+                      {company.tags?.map((tag: string) => (
+                        <span key={tag} className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${tagMeituan}`}>{tag === '美团' ? meituanLabel : tag}</span>
+                      ))}
                     </div>
                   </div>
                   <div className="divide-y" style={{ borderColor: cardBorder }}>
