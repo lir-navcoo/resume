@@ -5,6 +5,8 @@ import { Card, CardContent } from './components/ui/card'
 
 const CORRECT_PASSWORD = 'lirui'
 
+type Theme = 'light' | 'dark'
+
 const resumeData: {
   name: string
   title: string
@@ -88,7 +90,40 @@ const resumeData: {
   ],
 }
 
-function PasswordScreen({ onUnlock }: { onUnlock: () => void }) {
+// ── Theme toggle button ────────────────────────────────────────────
+function ThemeToggle({ theme, onToggle }: { theme: Theme; onToggle: () => void }) {
+  return (
+    <button
+      onClick={onToggle}
+      title={theme === 'dark' ? '切换亮色模式' : '切换暗黑模式'}
+      className="absolute top-4 right-4 w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+      style={
+        theme === 'dark'
+          ? { background: 'rgba(255,255,255,0.1)', color: '#f1f5f9' }
+          : { background: 'rgba(0,0,0,0.06)', color: '#475569' }
+      }
+    >
+      {theme === 'dark' ? (
+        // Sun icon
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      ) : (
+        // Moon icon
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      )}
+    </button>
+  )
+}
+
+// ── Login / Password screen ────────────────────────────────────────
+function PasswordScreen({ onUnlock, theme, onTheme }: { onUnlock: () => void; theme: Theme; onTheme: () => void }) {
   const [password, setPassword] = useState('')
   const [showPw, setShowPw] = useState(false)
   const [error, setError] = useState(false)
@@ -125,75 +160,95 @@ function PasswordScreen({ onUnlock }: { onUnlock: () => void }) {
     }
   }
 
+  const isDark = theme === 'dark'
+  const bg = isDark
+    ? 'linear-gradient(135deg, #0a0f1e 0%, #111827 40%, #0f172a 100%)'
+    : 'linear-gradient(135deg, #f0f4ff 0%, #e8edf5 50%, #f5f7fa 100%)'
+  const cardBg = isDark ? 'rgba(15,23,42,0.75)' : 'rgba(255,255,255,0.85)'
+  const cardBorder = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'
+  const textPrimary = isDark ? '#f1f5f9' : '#0f172a'
+  const textSecondary = isDark ? '#94a3b8' : '#475569'
+  const textMuted = isDark ? '#64748b' : '#94a3b8'
+  const inputClass = isDark
+    ? 'bg-white/[0.06] border-white/10 text-white placeholder:text-slate-600'
+    : 'bg-slate-100 border-slate-200 text-slate-900 placeholder:text-slate-400'
+  const labelClass = isDark ? 'text-slate-400' : 'text-slate-500'
+  const hintClass = isDark ? 'text-slate-700' : 'text-slate-400'
+
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, #0a0f1e 0%, #111827 40%, #0f172a 100%)',
-      }}
+      style={{ background: bg }}
     >
+      {/* Background blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-10 blur-3xl"
-          style={{ background: 'radial-gradient(ellipse, #3b82f6 0%, transparent 70%)' }}
+          style={{ background: isDark ? 'radial-gradient(ellipse, #3b82f6 0%, transparent 70%)' : 'radial-gradient(ellipse, #93c5fd 0%, transparent 70%)' }}
         />
         <div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-6 blur-3xl"
-          style={{ background: 'radial-gradient(ellipse, #7c3aed 0%, transparent 70%)' }}
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-5 blur-3xl"
+          style={{ background: isDark ? 'radial-gradient(ellipse, #7c3aed 0%, transparent 70%)' : 'radial-gradient(ellipse, #c4b5fd 0%, transparent 70%)' }}
         />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+              'linear-gradient(rgba(0,0,0,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.4) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />
       </div>
 
+      {/* Theme toggle */}
+      <ThemeToggle theme={theme} onToggle={onTheme} />
+
       <div className="w-full max-w-xs relative z-10">
         <Card
-          className="border border-white/10 shadow-2xl"
-          style={{
-            background: 'rgba(15, 23, 42, 0.7)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-          }}
+          className="border shadow-2xl"
+          style={{ background: cardBg, backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderColor: cardBorder }}
         >
-          <CardContent className="pt-6 pb-6 px-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-xs text-slate-400 font-medium tracking-wider uppercase">
+          <CardContent className="pt-7 pb-7 px-7">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Label + Input as a tight group */}
+              <div className="space-y-3">
+                <label
+                  htmlFor="password-input"
+                  className="block text-xs font-medium tracking-widest uppercase"
+                  style={{ color: textMuted }}
+                >
                   访问密钥
                 </label>
                 <div className="relative">
                   <Input
+                    id="password-input"
                     ref={inputRef}
                     type={showPw ? 'text' : 'password'}
-                    placeholder="输入密钥"
+                    placeholder="输入密钥解锁"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={`
-                      pr-16 bg-white/[0.06] border-white/10 text-white placeholder:text-slate-600
-                      rounded-xl h-12 text-sm
-                      focus-visible:ring-2 focus-visible:ring-blue-500/40
+                      pr-14 rounded-xl h-12 text-sm
+                      border focus-visible:ring-2
                       transition-all duration-300
-                      ${error ? 'ring-1 ring-red-500/60 focus:ring-red-500/40' : ''}
-                      ${autoLogging ? 'opacity-70' : ''}
+                      ${inputClass}
+                      ${error ? 'ring-2 ring-red-500/60' : isDark ? 'focus-visible:ring-blue-500/50' : 'focus-visible:ring-blue-400/50'}
+                      ${autoLogging ? 'opacity-60' : ''}
                     `}
                     autoFocus
                   />
                   <button
                     type="button"
                     onClick={() => setShowPw(!showPw)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[11px] text-slate-500 hover:text-slate-300 transition-colors tracking-wide"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[11px] tracking-wide transition-colors"
+                    style={{ color: textSecondary }}
                   >
                     {showPw ? '隐藏' : '显示'}
                   </button>
                 </div>
 
                 {error && (
-                  <p className="text-[11px] text-center text-red-400 font-medium tracking-wide animate-pulse">
+                  <p className="text-[11px] text-center text-red-500 font-medium tracking-wide animate-pulse">
                     密钥错误，请重新输入
                   </p>
                 )}
@@ -202,14 +257,11 @@ function PasswordScreen({ onUnlock }: { onUnlock: () => void }) {
               <Button
                 type="submit"
                 disabled={!password || loading || autoLogging}
-                className="w-full h-11 rounded-xl text-sm font-medium tracking-wide transition-all duration-300 disabled:opacity-50"
+                className="w-full h-11 rounded-xl text-sm font-medium tracking-wide transition-all duration-300 disabled:opacity-40"
                 style={
                   password && !loading && !autoLogging
-                    ? {
-                        background: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)',
-                        boxShadow: '0 4px 20px rgba(59, 130, 246, 0.35)',
-                      }
-                    : { background: 'rgba(255,255,255,0.06)' }
+                    ? { background: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)', color: '#fff', boxShadow: '0 4px 20px rgba(59,130,246,0.35)' }
+                    : { background: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)', color: textSecondary }
                 }
               >
                 {autoLogging ? (
@@ -230,7 +282,7 @@ function PasswordScreen({ onUnlock }: { onUnlock: () => void }) {
           </CardContent>
         </Card>
 
-        <p className="text-center text-[11px] text-slate-700 mt-6 tracking-wide">
+        <p className="text-center text-[11px] mt-5 tracking-wide" style={{ color: textMuted }}>
           仅限授权访客 · 请勿分享
         </p>
       </div>
@@ -238,14 +290,25 @@ function PasswordScreen({ onUnlock }: { onUnlock: () => void }) {
   )
 }
 
-function ResumeContent() {
+// ── Resume content ──────────────────────────────────────────────────
+function ResumeContent({ theme, onTheme }: { theme: Theme; onTheme: () => void }) {
+  const isDark = theme === 'dark'
+  const bg = isDark
+    ? 'radial-gradient(ellipse at 50% 0%, #0f1c2e 0%, #080e1a 100%)'
+    : 'radial-gradient(ellipse at 50% 0%, #f0f4ff 0%, #e8edf5 50%, #ffffff 100%)'
+  const cardBg = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.7)'
+  const cardBorder = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)'
+  const textPrimary = isDark ? '#f1f5f9' : '#0f172a'
+  const textSecondary = isDark ? '#94a3b8' : '#475569'
+  const textMuted = isDark ? '#64748b' : '#94a3b8'
+  const badgeBg = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)'
+  const sectionAccent = isDark ? 'linear-gradient(to bottom, #3b82f6, #8b5cf6)' : 'linear-gradient(to bottom, #3b82f6, #6366f1)'
+
   return (
-    <div
-      className="min-h-screen py-10 px-4"
-      style={{
-        background: 'radial-gradient(ellipse at 50% 0%, #0f1c2e 0%, #080e1a 100%)',
-      }}
-    >
+    <div className="min-h-screen py-10 px-4 relative" style={{ background: bg }}>
+      {/* Theme toggle */}
+      <ThemeToggle theme={theme} onToggle={onTheme} />
+
       <div className="max-w-3xl mx-auto space-y-10">
 
         {/* Header */}
@@ -253,51 +316,40 @@ function ResumeContent() {
           {resumeData.name && (
             <div
               className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl"
-              style={{
-                background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-                boxShadow: '0 12px 40px rgba(59,130,246,0.3)',
-              }}
+              style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', boxShadow: '0 12px 40px rgba(59,130,246,0.3)' }}
             >
               <span className="text-white text-3xl font-bold">{resumeData.name[0]}</span>
             </div>
           )}
           <div>
-            {resumeData.name && <h1 className="text-3xl font-bold text-white">{resumeData.name}</h1>}
-            {resumeData.title && <p className="text-slate-400 mt-1">{resumeData.title}</p>}
-            {(resumeData.email || resumeData.github || resumeData.location) && (
-              <div className="flex flex-wrap gap-3 mt-3 text-sm text-slate-500">
-                {resumeData.email && <span>{resumeData.email}</span>}
-                {resumeData.email && resumeData.github && <span>·</span>}
-                {resumeData.github && <span>{resumeData.github}</span>}
-                {(resumeData.email || resumeData.github) && resumeData.location && <span>·</span>}
-                {resumeData.location && <span>{resumeData.location}</span>}
-              </div>
-            )}
+            {resumeData.name && <h1 className="text-3xl font-bold" style={{ color: textPrimary }}>{resumeData.name}</h1>}
+            {resumeData.title && <p className="mt-1" style={{ color: textSecondary }}>{resumeData.title}</p>}
+            <div className="flex flex-wrap gap-3 mt-3 text-sm" style={{ color: textMuted }}>
+              {resumeData.email && <span>{resumeData.email}</span>}
+              {resumeData.email && resumeData.github && <span>·</span>}
+              {resumeData.github && <span>{resumeData.github}</span>}
+              {(resumeData.email || resumeData.github) && resumeData.location && <span>·</span>}
+              {resumeData.location && <span>{resumeData.location}</span>}
+            </div>
           </div>
         </div>
 
         {/* About */}
         {resumeData.about && (
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-              <span
-                className="w-1 h-5 rounded-full inline-block"
-                style={{ background: 'linear-gradient(to bottom, #3b82f6, #8b5cf6)' }}
-              />
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
               关于我
             </h2>
-            <p className="text-slate-400 leading-relaxed">{resumeData.about}</p>
+            <p className="leading-relaxed" style={{ color: textSecondary }}>{resumeData.about}</p>
           </section>
         )}
 
         {/* Skills */}
         {resumeData.skills.length > 0 && (
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-              <span
-                className="w-1 h-5 rounded-full inline-block"
-                style={{ background: 'linear-gradient(to bottom, #3b82f6, #8b5cf6)' }}
-              />
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
               技能清单
             </h2>
             <div className="grid grid-cols-2 gap-3">
@@ -305,15 +357,15 @@ function ResumeContent() {
                 <div
                   key={skill.category}
                   className="rounded-xl p-4 border"
-                  style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.08)' }}
+                  style={{ background: cardBg, borderColor: cardBorder }}
                 >
-                  <p className="text-xs font-medium text-slate-500 mb-2">{skill.category}</p>
+                  <p className="text-xs font-medium mb-2" style={{ color: textMuted }}>{skill.category}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {skill.items.map((item) => (
                       <span
                         key={item}
-                        className="text-xs px-2 py-0.5 rounded-md text-slate-300"
-                        style={{ background: 'rgba(255,255,255,0.08)' }}
+                        className="text-xs px-2 py-0.5 rounded-md"
+                        style={{ background: badgeBg, color: textSecondary }}
                       >
                         {item}
                       </span>
@@ -328,11 +380,8 @@ function ResumeContent() {
         {/* Experience */}
         {resumeData.experience.length > 0 && (
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-              <span
-                className="w-1 h-5 rounded-full inline-block"
-                style={{ background: 'linear-gradient(to bottom, #3b82f6, #8b5cf6)' }}
-              />
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
               工作经历
             </h2>
             <div className="space-y-3">
@@ -340,16 +389,16 @@ function ResumeContent() {
                 <div
                   key={i}
                   className="rounded-xl p-5 border"
-                  style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.08)' }}
+                  style={{ background: cardBg, borderColor: cardBorder }}
                 >
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="font-medium text-white">{exp.company}</p>
-                      <p className="text-sm text-slate-400">{exp.role}</p>
+                      <p className="font-medium" style={{ color: textPrimary }}>{exp.company}</p>
+                      <p className="text-sm mt-0.5" style={{ color: textSecondary }}>{exp.role}</p>
                     </div>
-                    <span className="text-xs text-slate-500 whitespace-nowrap">{exp.period}</span>
+                    <span className="text-xs whitespace-nowrap mt-0.5" style={{ color: textMuted }}>{exp.period}</span>
                   </div>
-                  <p className="text-sm text-slate-400 mt-3 leading-relaxed">{exp.description}</p>
+                  <p className="text-sm mt-3 leading-relaxed" style={{ color: textSecondary }}>{exp.description}</p>
                 </div>
               ))}
             </div>
@@ -359,11 +408,8 @@ function ResumeContent() {
         {/* Projects */}
         {resumeData.projects.length > 0 && (
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-              <span
-                className="w-1 h-5 rounded-full inline-block"
-                style={{ background: 'linear-gradient(to bottom, #3b82f6, #8b5cf6)' }}
-              />
+            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: textPrimary }}>
+              <span className="w-1 h-5 rounded-full inline-block" style={{ background: sectionAccent }} />
               项目经历
             </h2>
             <div className="space-y-3">
@@ -371,30 +417,31 @@ function ResumeContent() {
                 <div
                   key={project.name}
                   className="rounded-xl p-5 border"
-                  style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.08)' }}
+                  style={{ background: cardBg, borderColor: cardBorder }}
                 >
                   <div className="flex items-start justify-between mb-1">
-                    <p className="font-medium text-white">{project.name}</p>
+                    <p className="font-medium" style={{ color: textPrimary }}>{project.name}</p>
                     {project.link && (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-blue-400 hover:underline"
+                        className="text-xs"
+                        style={{ color: '#60a5fa' }}
                       >
                         查看源码 ↗
                       </a>
                     )}
                   </div>
-                  {project.tech && <p className="text-xs text-slate-500 mb-2">{project.tech}</p>}
-                  <p className="text-sm text-slate-400 leading-relaxed">{project.description}</p>
+                  {project.tech && <p className="text-xs mb-2" style={{ color: textMuted }}>{project.tech}</p>}
+                  <p className="text-sm leading-relaxed" style={{ color: textSecondary }}>{project.description}</p>
                 </div>
               ))}
             </div>
           </section>
         )}
 
-        <footer className="text-center text-xs text-slate-600 pt-4">
+        <footer className="text-center text-xs pt-4" style={{ color: textMuted }}>
           © {new Date().getFullYear()} {resumeData.name} · Built with React + Tailwind CSS
         </footer>
       </div>
@@ -402,7 +449,14 @@ function ResumeContent() {
   )
 }
 
+// ── Root App ───────────────────────────────────────────────────────
 export default function App() {
   const [unlocked, setUnlocked] = useState(false)
-  return unlocked ? <ResumeContent /> : <PasswordScreen onUnlock={() => setUnlocked(true)} />
+  const [theme, setTheme] = useState<Theme>('light')
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+
+  return unlocked
+    ? <ResumeContent theme={theme} onTheme={toggleTheme} />
+    : <PasswordScreen onUnlock={() => setUnlocked(true)} theme={theme} onTheme={toggleTheme} />
 }
